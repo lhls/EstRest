@@ -1,0 +1,51 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Padrao.master.cs" Inherits="EstRest.Padrao" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>EstRest</title>
+    <link href="<%= ResolveUrl("~") %>css/bootstrap.min.css" rel="stylesheet" />
+    <script src="<%= ResolveUrl("~") %>js/jquery-1.12.4.min.js"></script>
+    <script src="<%= ResolveUrl("~") %>js/bootstrap.min.js"></script>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Ponto Web</a>
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul id="ulMenu" runat="server" class="nav navbar-nav">
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#" onclick="document.getElementById('btnLogOut').click()"><span class="glyphicon glyphicon-log-in"></span>Log-out</a>
+                            <button style="display: none;" runat="server" id="btnLogOut" onserverclick="btnLogOut_ServerClick"></button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="container">
+            <div class="jumbotron">
+                <h2 runat="server" id="hTituloPagina"></h2>
+            </div>
+            <div class="well">
+                <asp:ContentPlaceHolder ID="cphConsulta" runat="server">
+                </asp:ContentPlaceHolder>
+                <asp:ContentPlaceHolder ID="cphEdita" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

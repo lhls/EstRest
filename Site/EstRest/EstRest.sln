@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EstRest", "EstRest\EstRest.csproj", "{FBE24C58-A98E-4468-B911-50A4DBA56619}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Negocio", "Negocio\Negocio.csproj", "{36801233-F0A3-43BB-9BAB-D1BF757E7E77}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AcessoDados", "AcessoDados\AcessoDados.csproj", "{9F9111EE-A769-41F5-84DF-B712D1235712}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FBE24C58-A98E-4468-B911-50A4DBA56619}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FBE24C58-A98E-4468-B911-50A4DBA56619}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FBE24C58-A98E-4468-B911-50A4DBA56619}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FBE24C58-A98E-4468-B911-50A4DBA56619}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36801233-F0A3-43BB-9BAB-D1BF757E7E77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36801233-F0A3-43BB-9BAB-D1BF757E7E77}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36801233-F0A3-43BB-9BAB-D1BF757E7E77}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36801233-F0A3-43BB-9BAB-D1BF757E7E77}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F9111EE-A769-41F5-84DF-B712D1235712}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F9111EE-A769-41F5-84DF-B712D1235712}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F9111EE-A769-41F5-84DF-B712D1235712}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F9111EE-A769-41F5-84DF-B712D1235712}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

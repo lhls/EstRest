@@ -1,4 +1,4 @@
-﻿6<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="EstRest.Login" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="EstRest.Login" %>
 
 <!DOCTYPE html>
 

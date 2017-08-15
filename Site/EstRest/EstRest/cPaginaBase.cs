@@ -43,6 +43,11 @@ namespace EstRest
             set { ((iPaginaBase)this.Master).v_place_holder_ativo = (int)value; }
         }
 
+        public bool v_oculta_place_holders 
+        {
+            set { ((iPaginaBase)this.Master).v_oculta_place_holders = value; }
+        }
+
         protected DataTable dtDados {
             get { return (DataTable)ViewState["dtDados"]; }
             set { ViewState["dtDados"] = value; }

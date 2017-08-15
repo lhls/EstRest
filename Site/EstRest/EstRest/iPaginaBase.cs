@@ -12,5 +12,6 @@ namespace EstRest
         int c_cd_perfil { get; }
         string titulo_pagina { get; set; }
         int v_place_holder_ativo { get; set; }
+        bool v_oculta_place_holders { set; }
     }
 }

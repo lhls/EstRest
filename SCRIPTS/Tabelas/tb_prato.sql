@@ -19,7 +19,7 @@ GO
 USE [DbRestaurante]
 GO
 
-/****** Object:  Table [dbo].[tb_prato]    Script Date: 08/13/2017 20:45:44 ******/
+/****** Object:  Table [dbo].[tb_prato]    Script Date: 08/15/2017 19:37:26 ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[tb_prato]') AND type in (N'U'))
 DROP TABLE [dbo].[tb_prato]
 GO
@@ -27,7 +27,7 @@ GO
 USE [DbRestaurante]
 GO
 
-/****** Object:  Table [dbo].[tb_prato]    Script Date: 08/13/2017 20:45:45 ******/
+/****** Object:  Table [dbo].[tb_prato]    Script Date: 08/15/2017 19:37:26 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -38,7 +38,7 @@ SET ANSI_PADDING ON
 GO
 
 CREATE TABLE [dbo].[tb_prato](
-	[cd_prato] [int] NOT NULL,
+	[cd_prato] [int] IDENTITY(1,1) NOT NULL,
 	[ds_prato] [varchar](255) NOT NULL,
 	[fg_excluido] [bit] NOT NULL,
 	[cd_usuario_inclusao] [int] NOT NULL,

@@ -78,6 +78,8 @@ namespace EstRest
             }
         }
 
+        public bool v_oculta_place_holders { set { if (!value) divDadosMaster.Visible = false; } }
+
         protected void Page_PreRender(object sender, EventArgs e)
         {
             if (c_cd_usuario_logado == 0)
@@ -101,8 +103,8 @@ namespace EstRest
                 //TODO: Incluir datatable com os menus
                 //nMenu.EfetuarConsulta(c_cd_usuario_logado);
 
-            if (ds.Tables[0].Rows.Count > 0)
-                MontaMenu(ds.Tables[0]);
+            //if (ds.Tables[0].Rows.Count > 0)
+            //    MontaMenu(ds.Tables[0]);
         }
 
         private void MontaMenu(DataTable dt)

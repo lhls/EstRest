@@ -12,7 +12,7 @@ GO
 USE [DbRestaurante]
 GO
 
-/****** Object:  Table [dbo].[tb_cardapio]    Script Date: 08/13/2017 20:45:54 ******/
+/****** Object:  Table [dbo].[tb_cardapio]    Script Date: 08/15/2017 19:36:47 ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[tb_cardapio]') AND type in (N'U'))
 DROP TABLE [dbo].[tb_cardapio]
 GO
@@ -20,7 +20,7 @@ GO
 USE [DbRestaurante]
 GO
 
-/****** Object:  Table [dbo].[tb_cardapio]    Script Date: 08/13/2017 20:45:54 ******/
+/****** Object:  Table [dbo].[tb_cardapio]    Script Date: 08/15/2017 19:36:48 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -28,7 +28,7 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 CREATE TABLE [dbo].[tb_cardapio](
-	[cd_cardapio] [int] NOT NULL,
+	[cd_cardapio] [int] IDENTITY(1,1) NOT NULL,
 	[cd_prato] [int] NOT NULL,
 	[cd_cuba] [int] NOT NULL,
 	[dt_cardapio] [datetime] NOT NULL,

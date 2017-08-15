@@ -15,7 +15,7 @@ GO
 USE [DbRestaurante]
 GO
 
-/****** Object:  Table [dbo].[tb_estoque]    Script Date: 08/13/2017 20:46:13 ******/
+/****** Object:  Table [dbo].[tb_estoque]    Script Date: 08/15/2017 19:36:54 ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[tb_estoque]') AND type in (N'U'))
 DROP TABLE [dbo].[tb_estoque]
 GO
@@ -23,7 +23,7 @@ GO
 USE [DbRestaurante]
 GO
 
-/****** Object:  Table [dbo].[tb_estoque]    Script Date: 08/13/2017 20:46:13 ******/
+/****** Object:  Table [dbo].[tb_estoque]    Script Date: 08/15/2017 19:36:55 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -31,7 +31,7 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 CREATE TABLE [dbo].[tb_estoque](
-	[cd_estoque] [int] NOT NULL,
+	[cd_estoque] [int] IDENTITY(1,1) NOT NULL,
 	[cd_ingrediente] [int] NOT NULL,
 	[dt_validade] [datetime] NOT NULL,
 	[nr_quantidade_atual] [int] NOT NULL,

@@ -9,5 +9,8 @@ namespace Negocio
     interface iNegocioBase
     {
         DataSet EfetuarConsulta(); 
+        void Carregar(int id); 
+        int EfetuarAtualizacao(int cd_usuario_logado); 
+        int EfetuarExclusao(int cd_usuario_logado);
     }
 }

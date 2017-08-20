@@ -99,12 +99,30 @@ namespace EstRest
 
         private void CarregaMenu()
         {
-            DataSet ds = new DataSet();
-                //TODO: Incluir datatable com os menus
-                //nMenu.EfetuarConsulta(c_cd_usuario_logado);
+            DataTable dt = new DataTable();
+            //TODO: Incluir datatable com os menus
+            //nMenu.EfetuarConsulta(c_cd_usuario_logado);
 
-            //if (ds.Tables[0].Rows.Count > 0)
-            //    MontaMenu(ds.Tables[0]);
+            dt.Columns.Add("cd_menu");
+            dt.Columns.Add("ds_nome");
+            dt.Columns.Add("ds_url");
+            dt.Columns.Add("cd_pai");
+
+            PopulaMenus(dt);
+
+            MontaMenu(dt);
+        }
+
+        private void PopulaMenus(DataTable dt)
+        {
+            dt.Rows.Add(1, //cd_menu
+                        "Usuários", //ds_nome
+                        "Usuario.aspx", //ds_url
+                        0); //cd_pai
+            dt.Rows.Add(2, //cd_menu
+                        "Ingredientes", //ds_nome
+                        "Ingrediente.aspx", //ds_url
+                        0); //cd_pai
         }
 
         private void MontaMenu(DataTable dt)

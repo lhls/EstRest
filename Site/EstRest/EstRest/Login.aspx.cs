@@ -19,7 +19,7 @@ namespace EstRest
                 v_senha = txtSenha.Value
             };
 
-            DataSet dsLogin = usuario.EfetuarConsulta();
+            DataSet dsLogin = usuario.Login();
 
             if (dsLogin.Tables.Count > 0 && dsLogin.Tables[0].Rows.Count > 0)
             {

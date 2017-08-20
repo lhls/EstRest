@@ -123,5 +123,15 @@ namespace EstRest
             gv.DataSource = dtDados;
             gv.DataBind();
         }
+
+        protected void ExibirMensagem(string msg, string nomeScript)
+        {
+            ClientScript.RegisterStartupScript(Page.GetType(), nomeScript, "alert('" + msg + "');", true);
+        }
+
+        protected void ExibirMensagem(string msg)
+        {
+            ExibirMensagem(msg, Guid.NewGuid().ToString());
+        }
     }
 }

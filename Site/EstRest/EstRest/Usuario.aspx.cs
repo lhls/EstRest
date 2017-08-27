@@ -11,17 +11,13 @@ namespace EstRest
 {
     public partial class Usuario : cPaginaBase
     {
-        protected void Page_Load(object sender, EventArgs e)
+        protected override void Page_Load(object sender, EventArgs e)
         {
             titulo_pagina = "Usuários";
-            if (!IsPostBack)
-            {
-                carregarCombos();
-                limpaCamposPesquisa();
-            }
+            base.Page_Load(sender, e);
         }
 
-        private void carregarCombos()
+        protected override void carregarCombos()
         {
             ddlPerfilPesquisa.Items.Clear();
             ddlPerfilInclusao.Items.Clear();
@@ -53,28 +49,22 @@ namespace EstRest
             popularGrid(gvDados, ds.Tables[0]);
         }
 
-        protected void btnInserir_ServerClick(object sender, EventArgs e)
-        {
-            v_place_holder_ativo = e_place_holder_ativo.Editar;
-            limpaCamposPesquisa();
-        }
-
         protected void btnCancelar_ServerClick(object sender, EventArgs e)
         {
             v_place_holder_ativo = e_place_holder_ativo.Consultar;
             limpaCamposInclusao();
         }
-        private void limpaCamposInclusao()
+        protected override void limpaCamposInclusao()
         {
             txtNomeInclusao.Value = string.Empty;
             txtLoginInclusao.Value = string.Empty;
             txtSenhaInclusao.Value = string.Empty;
             hdnCdUsuario.Value = string.Empty;
 
-            ddlPerfilInclusao.SelectedValue = ((int)nUsuario.e_perfil.Selecione).ToString();
+            base.limpaCamposInclusao();
 
         }
-        private void limpaCamposPesquisa()
+        protected override void limpaCamposPesquisa()
         {
             txtNomePesquisa.Value = string.Empty;
             ddlPerfilPesquisa.SelectedIndex = 0;
@@ -85,7 +75,7 @@ namespace EstRest
             limparGrid(gvDados);
         }
 
-        protected void btnSalvar_ServerClick(object sender, EventArgs e)
+        protected override void btnSalvar_ServerClick(object sender, EventArgs e)
         {
 
             nUsuario objU = new nUsuario
@@ -101,16 +91,13 @@ namespace EstRest
             {
                 objU.EfetuarAtualizacao(c_cd_usuario_logado);
                 ExibirMensagem("Efetuada Inclusao do usuário " + objU.v_login + " com sucesso.");
-
-                v_place_holder_ativo = e_place_holder_ativo.Consultar;
-
-                limpaCamposInclusao();
             }
             catch (Exception ex)
             {
                 throw ex;
             }
 
+            base.btnSalvar_ServerClick(sender, e);
         }
 
         protected void gvDados_RowCommand(object sender, GridViewCommandEventArgs e)

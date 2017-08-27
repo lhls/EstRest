@@ -6,11 +6,6 @@ namespace EstRest
 {
     public partial class Login : cPaginaBase
     {
-        protected void Page_Load(object sender, EventArgs e)
-        {
-
-        }
-
         protected void btnAcessar_Click(object sender, EventArgs e)
         {
             nUsuario usuario = new nUsuario

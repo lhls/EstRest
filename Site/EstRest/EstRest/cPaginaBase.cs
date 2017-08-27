@@ -66,6 +66,34 @@ namespace EstRest
             }
         }
 
+        protected virtual void Page_Load(object sender, EventArgs e)
+        {
+            if (!IsPostBack)
+            {
+                carregarCombos();
+                limpaCamposPesquisa();
+            }
+        }
+
+        protected virtual void carregarCombos() { }
+        protected virtual void limpaCamposPesquisa() { }
+        protected virtual void limpaCamposInclusao()
+        {
+            carregarCombos();
+        }
+
+        protected virtual void btnInserir_ServerClick(object sender, EventArgs e)
+        {
+            v_place_holder_ativo = e_place_holder_ativo.Editar;
+            limpaCamposPesquisa();
+        }
+
+        protected virtual void btnSalvar_ServerClick(object sender, EventArgs e)
+        {
+            v_place_holder_ativo = e_place_holder_ativo.Consultar;
+            limpaCamposInclusao();
+        }
+
         protected void paginacaoGrid(object s, GridViewPageEventArgs e)
         {
             ((GridView)s).PageIndex = e.NewPageIndex;
@@ -132,6 +160,16 @@ namespace EstRest
         protected void ExibirMensagem(string msg)
         {
             ExibirMensagem(msg, Guid.NewGuid().ToString());
+        }
+
+        public bool ExibirMensagemErro(string message)
+        {
+            if (message.StartsWith("@"))
+            {
+                ExibirMensagem(message);
+                return true;
+            }
+            return false;
         }
     }
 }

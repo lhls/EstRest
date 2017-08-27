@@ -34,7 +34,7 @@ namespace Negocio
             Carregar(id);
         }
 
-        public DataSet EfetuarConsulta() { return consultarUsuario(); }
+        public DataSet EfetuarConsulta() { return consultarItem(); }
         public void Carregar(int id)
         {
             DataTable dt = ConsultaDataTable(pr_consulta_usuario, new object[] { null, null, null, id });
@@ -48,7 +48,7 @@ namespace Negocio
             }
         }
 
-        private DataSet consultarUsuario()
+        private DataSet consultarItem()
         {
             return ConsultaDataSet(pr_consulta_usuario, new object[] { v_login, ds_nome, cd_perfil, null });
         }
@@ -58,7 +58,7 @@ namespace Negocio
             return ConsultaDataSet(pr_login, new object[] { v_login, v_senha});
         }
 
-        public int EfetuarAtualizacao(int cd_usuario_logado)
+        public override int EfetuarAtualizacao(int cd_usuario_logado)
         {
             return AtualizaDados(pr_inclui_usuario, this, cd_usuario_logado);
         }
@@ -67,5 +67,6 @@ namespace Negocio
         {
             throw new NotImplementedException();
         }
+
     }
 }

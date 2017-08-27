@@ -15,7 +15,7 @@ GO
 USE [DbRestaurante]
 GO
 
-/****** Object:  Table [dbo].[tb_estoque]    Script Date: 08/15/2017 19:36:54 ******/
+/****** Object:  Table [dbo].[tb_estoque]    Script Date: 08/26/2017 15:28:44 ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[tb_estoque]') AND type in (N'U'))
 DROP TABLE [dbo].[tb_estoque]
 GO
@@ -23,7 +23,7 @@ GO
 USE [DbRestaurante]
 GO
 
-/****** Object:  Table [dbo].[tb_estoque]    Script Date: 08/15/2017 19:36:55 ******/
+/****** Object:  Table [dbo].[tb_estoque]    Script Date: 08/26/2017 15:28:44 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -34,7 +34,7 @@ CREATE TABLE [dbo].[tb_estoque](
 	[cd_estoque] [int] IDENTITY(1,1) NOT NULL,
 	[cd_ingrediente] [int] NOT NULL,
 	[dt_validade] [datetime] NOT NULL,
-	[nr_quantidade_atual] [int] NOT NULL,
+	[nr_quantidade_atual] [numeric](18, 2) NOT NULL,
  CONSTRAINT [PK_tb_estoque] PRIMARY KEY CLUSTERED 
 (
 	[cd_estoque] ASC

@@ -9,7 +9,7 @@ namespace EstRest
 {
     public partial class Home : cPaginaBase
     {
-        protected void Page_Load(object sender, EventArgs e)
+        protected override void Page_Load(object sender, EventArgs e)
         {
             titulo_pagina = "Página inicial";
             v_oculta_place_holders = false;

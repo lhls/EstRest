@@ -1,0 +1,44 @@
+[
+  {
+    "outputFileName": "js/bootstrap-datepicker.min.js",
+    "inputFiles": [
+      "js/bootstrap-datepicker.js"
+    ]
+  },
+  {
+    "outputFileName": "js/bootstrap.min.js",
+    "inputFiles": [
+      "js/bootstrap.js"
+    ]
+  },
+  {
+    "outputFileName": "css/bootstrap-datepicker.min.css",
+    "inputFiles": [
+      "css/bootstrap-datepicker.css"
+    ]
+  },
+  {
+    "outputFileName": "css/bootstrap-datepicker.standalone.min.css",
+    "inputFiles": [
+      "css/bootstrap-datepicker.standalone.css"
+    ]
+  },
+  {
+    "outputFileName": "css/bootstrap-datepicker3.min.css",
+    "inputFiles": [
+      "css/bootstrap-datepicker3.css"
+    ]
+  },
+  {
+    "outputFileName": "css/bootstrap-datepicker3.standalone.min.css",
+    "inputFiles": [
+      "css/bootstrap-datepicker3.standalone.css"
+    ]
+  },
+  {
+    "outputFileName": "css/bootstrap-theme.min.css",
+    "inputFiles": [
+      "css/bootstrap-theme.css"
+    ]
+  }
+]

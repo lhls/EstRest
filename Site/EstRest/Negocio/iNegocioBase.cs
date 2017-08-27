@@ -10,7 +10,8 @@ namespace Negocio
     {
         DataSet EfetuarConsulta(); 
         void Carregar(int id); 
-        int EfetuarAtualizacao(int cd_usuario_logado); 
+        //int EfetuarAtualizacao(int cd_usuario_logado); 
         int EfetuarExclusao(int cd_usuario_logado);
+        void inicializaVariaveis();
     }
 }

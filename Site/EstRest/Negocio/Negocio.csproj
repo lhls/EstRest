@@ -42,6 +42,8 @@
   <ItemGroup>
     <Compile Include="iNegocioBase.cs" />
     <Compile Include="NegocioBase.cs" />
+    <Compile Include="nIngrediente.cs" />
+    <Compile Include="nUnidadeMedida.cs" />
     <Compile Include="nUsuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

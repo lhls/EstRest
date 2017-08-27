@@ -33,6 +33,30 @@ namespace Negocio
             return arrParm;
         }
 
+        public virtual void inicializaVariaveis()
+        {
+            foreach (System.Reflection.PropertyInfo p in this.GetType().GetProperties())
+            {
+                switch (p.GetType().ToString())
+                {
+                    case ("System.String"):
+                        p.SetValue(this, string.Empty, null);
+                        break;
+                    case ("System.Int32"):
+                        p.SetValue(this, int.MinValue, null);
+                        break;
+                    case ("System.Decimal"):
+                        p.SetValue(this, decimal.MinValue, null);
+                        break;
+                    case ("System.DateTime"):
+                        p.SetValue(this, DateTime.MinValue, null);
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
         private static object verificaItemNulo(object objParm)
         {
             if (objParm == null) return DBNull.Value; 
@@ -46,6 +70,12 @@ namespace Negocio
                     case ("System.Int32"):
                         if (Convert.ToInt32(objParm) == int.MinValue) return DBNull.Value;
                         break;
+                    case ("System.Decimal"):
+                        if (Convert.ToDecimal(objParm) == decimal.MinValue) return DBNull.Value;
+                        break;
+                    case ("System.DateTime"):
+                        if (Convert.ToDateTime(objParm) == DateTime.MinValue) return DBNull.Value;
+                        break;
                     default:
                         break;
                 }
@@ -53,6 +83,10 @@ namespace Negocio
 
             return objParm;
         }
+
+        protected string pr_consulta = string.Empty;
+        protected string pr_atualiza = string.Empty;
+        protected string pr_exclui = string.Empty;
 
         private static void CarregaXmlNulo(XmlDocument v, object objClasse)
         {
@@ -81,6 +115,11 @@ namespace Negocio
             }
         }
 
+        public virtual int EfetuarAtualizacao(int cd_usuario_logado)
+        {
+            return AtualizaDados(pr_atualiza, this, cd_usuario_logado);
+        }
+
         protected static int AtualizaDados(string nomeProc, object objClasse, int cd_usuario_alteracao)
         {
             try
@@ -101,11 +140,39 @@ namespace Negocio
 
                 CarregaXmlNulo(x, objClasse);
 
-                return Convert.ToInt32(ConsultaDataSet(nomeProc, new object[] { x.OuterXml, cd_usuario_alteracao }).Tables[0].Rows[0][0]);
+                return Convert.ToInt32(ConsultaDataTable(nomeProc, new object[] { x.OuterXml, cd_usuario_alteracao }).Rows[0][0]);
             }
             catch
             {
                 return int.MinValue;
+            }
+        }
+
+        protected static int AtualizaDados(string nomeProc, object objClasse, int cd_usuario_alteracao, bool retornaErro)
+        {
+            try
+            {
+                XmlDocument x = new XmlDocument();
+                XmlSerializer xsSubmit = new XmlSerializer(objClasse.GetType());
+                string xmlInclusao = "";
+
+                using (StringWriter sww = new Utf8StringWriter())
+                {
+                    using (XmlWriter writer = XmlWriter.Create(sww))
+                    {
+                        xsSubmit.Serialize(writer, objClasse);
+                        xmlInclusao = sww.ToString(); // Your XML
+                        x.LoadXml(xmlInclusao);
+                    }
+                }
+
+                CarregaXmlNulo(x, objClasse);
+
+                return Convert.ToInt32(ConsultaDataTable(nomeProc, new object[] { x.OuterXml, cd_usuario_alteracao }).Rows[0][0]);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
 

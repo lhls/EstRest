@@ -70,6 +70,14 @@ namespace EstRest
             base.btnSalvar_ServerClick(sender, e);
         }
 
+        protected override void btnInserir_ServerClick(object sender, EventArgs e)
+        {
+            divValidadeInicial.Visible = false;
+            divQuantidadeInicial.Visible = false;
+
+            base.btnInserir_ServerClick(sender, e);
+        }
+
         protected override void limpaCamposInclusao()
         {
             hdnCdIngrediente.Value = string.Empty;
@@ -91,8 +99,9 @@ namespace EstRest
                 hdnCdIngrediente.Value = objIng.cd_ingrediente.ToString();
                 txtDescricaoInclusao.Value = objIng.ds_ingrediente;
                 ddlUnidadeMedidaInclusao.SelectedValue = objIng.cd_unidade_medida.ToString();
-                txtDtValidade.Value = objIng.dt_validade.ToString();
-                txtQtdInicial.Value = objIng.nr_quantidade_atual.ToString();
+
+                divValidadeInicial.Visible = false;
+                divQuantidadeInicial.Visible = false;
 
             }
             else if (e.CommandName == "EXCLUIR")

@@ -123,6 +123,10 @@ namespace EstRest
                         "Ingredientes", //ds_nome
                         "Ingrediente.aspx", //ds_url
                         0); //cd_pai
+            dt.Rows.Add(3, //cd_menu
+                        "Estoque", //ds_nome
+                        "Estoque.aspx", //ds_url
+                        0); //cd_pai
         }
 
         private void MontaMenu(DataTable dt)

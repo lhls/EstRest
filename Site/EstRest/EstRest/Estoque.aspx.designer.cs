@@ -10,7 +10,7 @@
 namespace EstRest {
     
     
-    public partial class Ingrediente {
+    public partial class Estoque {
         
         /// <summary>
         /// txtDescricaoPesquisa control.
@@ -20,6 +20,24 @@ namespace EstRest {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputText txtDescricaoPesquisa;
+        
+        /// <summary>
+        /// txtDtValidadeInicio control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtDtValidadeInicio;
+        
+        /// <summary>
+        /// txtDtValidadeFim control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtDtValidadeFim;
         
         /// <summary>
         /// btnConsultar control.
@@ -49,76 +67,22 @@ namespace EstRest {
         protected global::System.Web.UI.WebControls.GridView gvDados;
         
         /// <summary>
-        /// hdnCdIngrediente control.
+        /// hNomeIngredienteValidade control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnCdIngrediente;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl hNomeIngredienteValidade;
         
         /// <summary>
-        /// txtDescricaoInclusao control.
+        /// gvHistorico control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtDescricaoInclusao;
-        
-        /// <summary>
-        /// ddlUnidadeMedidaInclusao control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlUnidadeMedidaInclusao;
-        
-        /// <summary>
-        /// divValidadeInicial control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divValidadeInicial;
-        
-        /// <summary>
-        /// txtDtValidade control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtDtValidade;
-        
-        /// <summary>
-        /// divQuantidadeInicial control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divQuantidadeInicial;
-        
-        /// <summary>
-        /// txtQtdInicial control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtQtdInicial;
-        
-        /// <summary>
-        /// btnSalvar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton btnSalvar;
+        protected global::System.Web.UI.WebControls.GridView gvHistorico;
         
         /// <summary>
         /// btnCancelar control.

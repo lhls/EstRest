@@ -10,6 +10,30 @@
     <script src="<%= ResolveUrl("~") %>js/jquery-1.12.4.min.js"></script>
     <script src="<%= ResolveUrl("~") %>js/bootstrap.min.js"></script>
     <script src="<%= ResolveUrl("~") %>js/bootstrap-datepicker.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("[name=btnCancelar]").click(function () {
+                if (confirm("Deseja cancelar?")) {
+                    window.location.href = window.location.href;
+                    return false;
+                }
+            });
+
+            $("[name=btnVoltar]").click(function () {
+                window.location.href = window.location.href;
+                return false;
+            });
+
+            $('.input-group.date input').datepicker({
+                format: "dd/mm/yyyy",
+                startDate: "today",
+                todayBtn: "linked",
+                clearBtn: true,
+                language: "pt-BR",
+                todayHighlight: true
+            });
+        });
+    </script>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>

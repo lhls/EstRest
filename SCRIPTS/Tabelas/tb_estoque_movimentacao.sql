@@ -12,7 +12,7 @@ GO
 USE [DbRestaurante]
 GO
 
-/****** Object:  Table [dbo].[tb_estoque_movimentacao]    Script Date: 08/15/2017 19:37:00 ******/
+/****** Object:  Table [dbo].[tb_estoque_movimentacao]    Script Date: 08/30/2017 18:33:47 ******/
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[tb_estoque_movimentacao]') AND type in (N'U'))
 DROP TABLE [dbo].[tb_estoque_movimentacao]
 GO
@@ -20,7 +20,7 @@ GO
 USE [DbRestaurante]
 GO
 
-/****** Object:  Table [dbo].[tb_estoque_movimentacao]    Script Date: 08/15/2017 19:37:00 ******/
+/****** Object:  Table [dbo].[tb_estoque_movimentacao]    Script Date: 08/30/2017 18:33:47 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -31,7 +31,7 @@ CREATE TABLE [dbo].[tb_estoque_movimentacao](
 	[cd_estoque_movimentacao] [int] IDENTITY(1,1) NOT NULL,
 	[cd_estoque] [int] NOT NULL,
 	[nr_quantidade] [int] NOT NULL,
-	[fg_entrada] [bit] NOT NULL,
+	[fg_entrada] [numeric](18, 2) NOT NULL,
 	[dt_lancamento] [datetime] NOT NULL,
 	[cd_usuario_lancamento] [int] NOT NULL,
  CONSTRAINT [PK_tb_estoque_movimentacao] PRIMARY KEY CLUSTERED 

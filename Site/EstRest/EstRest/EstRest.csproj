@@ -78,6 +78,7 @@
     <Content Include="css\bootstrap-theme.min.css" />
     <Content Include="css\bootstrap.css" />
     <Content Include="css\bootstrap.min.css" />
+    <Content Include="Estoque.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Home.aspx" />
     <Content Include="Ingrediente.aspx" />
@@ -99,6 +100,13 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Encrypt.cs" />
+    <Compile Include="Estoque.aspx.cs">
+      <DependentUpon>Estoque.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Estoque.aspx.designer.cs">
+      <DependentUpon>Estoque.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

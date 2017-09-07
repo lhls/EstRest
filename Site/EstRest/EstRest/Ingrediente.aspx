@@ -1,23 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Padrao.Master" AutoEventWireup="true" CodeBehind="Ingrediente.aspx.cs" Inherits="EstRest.Ingrediente" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <script type="text/javascript">
-        $(function () {
-            $("[name=btnCancelar]").click(function() {
-                if (confirm("Deseja cancelar a inclusão?")) {
-                    window.location.href = window.location.href;
-                    return false;
-                }
-            });
-            $('.input-group.date input').datepicker({
-                format: "dd/mm/yyyy",
-                startDate: "today",
-                todayBtn: "linked",
-                clearBtn: true,
-                language: "pt-BR",
-                todayHighlight: true
-            });
-        });
-    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphConsulta" runat="server">
     <div class="form">
@@ -33,7 +15,7 @@
         <asp:GridView runat="server" CssClass="table" AllowPaging="true" AllowSorting="true" ID="gvDados" PageSize="10" OnPageIndexChanging="paginacaoGrid"
             OnSorting="ordenacaoGrid" AutoGenerateColumns="false" OnRowCommand="gvDados_RowCommand" DataKeyNames="cd_ingrediente">
             <Columns>
-                <asp:BoundField HeaderText="Nome" SortExpression="ds_nome" DataField="ds_ingrediente" />
+                <asp:BoundField HeaderText="Nome" SortExpression="ds_ingrediente" DataField="ds_ingrediente" />
                 <asp:ButtonField CommandName="EDITAR" ButtonType="Link" Text="Editar" />
                 <asp:ButtonField CommandName="EXCLUIR" ButtonType="Link" Text="Excluir" />
             </Columns>
@@ -52,7 +34,7 @@
             <asp:DropDownList runat="server" ID="ddlUnidadeMedidaInclusao" DataTextField="ds_unidade_medida" DataValueField="cd_unidade_medida" CssClass="form-control">
             </asp:DropDownList>
         </div>
-        <div class="form-group">
+        <div class="form-group" id="divValidadeInicial" runat="server">
             <label for="txtDtValidade">Data de Validade Inicial</label>
             <div class="input-group date">
                 <input type="text" runat="server" id="txtDtValidade" class="form-control" readonly="true" />
@@ -61,7 +43,7 @@
                 </div>
             </div>
         </div>
-        <div class="form-group">
+        <div class="form-group" id="divQuantidadeInicial" runat="server">
             <label for="txtQtdInicial">Quantidade Inicial em Estoque</label>
             <input type="text" runat="server" class="form-control" id="txtQtdInicial" />
         </div>

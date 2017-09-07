@@ -35,14 +35,12 @@ namespace Negocio
         }
         public void Carregar(int id)
         {
-            DataTable dt = ConsultaDataTable(pr_consulta, new object[] { null, null, null, null, id });
+            DataTable dt = ConsultaDataTable(pr_consulta, new object[] { null, id });
             if (dt.Rows.Count > 0)
             {
                 this.cd_ingrediente = (int)dt.Rows[0]["cd_ingrediente"];
                 this.cd_unidade_medida = (int)dt.Rows[0]["cd_unidade_medida"];
                 this.ds_ingrediente = dt.Rows[0]["ds_ingrediente"].ToString();
-                this.dt_validade = (DateTime)dt.Rows[0]["dt_validade"];
-                this.nr_quantidade_atual = (decimal)dt.Rows[0]["nr_quantidade_atual"];
             }
         }
 

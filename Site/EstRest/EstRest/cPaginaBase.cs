@@ -48,9 +48,16 @@ namespace EstRest
             set { ((iPaginaBase)this.Master).v_oculta_place_holders = value; }
         }
 
-        protected DataTable dtDados {
-            get { return (DataTable)ViewState["dtDados"]; }
-            set { ViewState["dtDados"] = value; }
+        protected DataTable dtDados
+        {
+            get { return (DataTable)ViewState[VwDtDados]; }
+            set { ViewState[VwDtDados] = value; }
+        }
+
+        protected string VwDtDados
+        {
+            get { return ViewState["VwDtDados"].ToString(); }
+            set { ViewState["VwDtDados"] = value; }
         }
 
         int iPaginaBase.v_place_holder_ativo
@@ -136,18 +143,21 @@ namespace EstRest
         }
         protected void popularGrid(GridView gv, DataTable dt)
         {
+            VwDtDados = "dtDados_" + gv.ID;
             dtDados = dt;
             popularGrid(gv);
         }
 
         protected void limparGrid(GridView gv)
         {
+            VwDtDados = "dtDados_" + gv.ID;
             dtDados = (new DataTable());
             popularGrid(gv);
         }
 
         private void popularGrid(GridView gv)
         {
+            VwDtDados = "dtDados_" + gv.ID;
             gv.DataSource = dtDados;
             gv.DataBind();
         }

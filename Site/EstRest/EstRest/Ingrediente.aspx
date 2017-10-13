@@ -36,7 +36,7 @@
         </div>
         <div class="form-group" id="divValidadeInicial" runat="server">
             <label for="txtDtValidade">Data de Validade Inicial</label>
-            <div class="input-group date">
+            <div class="input-group date inclusao">
                 <input type="text" runat="server" id="txtDtValidade" class="form-control" readonly="true" />
                 <div class="input-group-addon">
                     <span class="glyphicon glyphicon-th"></span>

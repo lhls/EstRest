@@ -176,6 +176,7 @@ namespace EstRest
         {
             if (message.StartsWith("@"))
             {
+                message = message.Substring(1);
                 ExibirMensagem(message);
                 return true;
             }

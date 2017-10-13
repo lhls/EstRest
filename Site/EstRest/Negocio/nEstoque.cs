@@ -18,6 +18,8 @@ namespace Negocio
         public decimal nr_quantidade_alterar { get; set; }
         public bool fg_entrada { get; set; }
         public List<nEstoqueMovimentacao> lst_estoque_movimentacao { get; set; }
+        private const string pr_consulta_estoques_prox_vencto = "pr_consulta_estoques_prox_vencto";
+
 
         public nEstoque()
         {
@@ -75,6 +77,11 @@ namespace Negocio
         private DataSet consultarDados()
         {
             return ConsultaDataSet(pr_consulta, new object[] { ds_ingrediente, dt_validade_inicial, dt_validade_final, null, null });
+        }
+
+        public DataTable consultarEstoquesProxVencimento()
+        {
+            return ConsultaDataTable(pr_consulta_estoques_prox_vencto, new object[] { });
         }
 
         public int EfetuarExclusao(int cd_usuario_logado)

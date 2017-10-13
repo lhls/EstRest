@@ -37,18 +37,18 @@ namespace Negocio
         {
             foreach (System.Reflection.PropertyInfo p in this.GetType().GetProperties())
             {
-                switch (p.GetType().ToString())
+                switch (p.PropertyType.Name)
                 {
-                    case ("System.String"):
+                    case ("String"):
                         p.SetValue(this, string.Empty, null);
                         break;
-                    case ("System.Int32"):
+                    case ("Int32"):
                         p.SetValue(this, int.MinValue, null);
                         break;
-                    case ("System.Decimal"):
+                    case ("Decimal"):
                         p.SetValue(this, decimal.MinValue, null);
                         break;
-                    case ("System.DateTime"):
+                    case ("DateTime"):
                         p.SetValue(this, DateTime.MinValue, null);
                         break;
                     default:
@@ -120,6 +120,18 @@ namespace Negocio
             return AtualizaDados(pr_atualiza, this, cd_usuario_logado);
         }
 
+        public virtual int EfetuarAtualizacao(int cd_usuario_logado, bool retornaErro)
+        {
+            try
+            {
+                return AtualizaDados(pr_atualiza, this, cd_usuario_logado, retornaErro);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         protected static int AtualizaDados(string nomeProc, object objClasse, int cd_usuario_alteracao)
         {
             try
@@ -168,7 +180,7 @@ namespace Negocio
 
                 CarregaXmlNulo(x, objClasse);
 
-                return Convert.ToInt32(ConsultaDataTable(nomeProc, new object[] { x.OuterXml, cd_usuario_alteracao }).Rows[0][0]);
+                return Convert.ToInt32(SqlHelper.ExecuteDataset(v_str_conexao, nomeProc, CarregaParametrosNulos(new object[] { x.OuterXml, cd_usuario_alteracao })).Tables[0].Rows[0][0]);
             }
             catch (Exception ex)
             {

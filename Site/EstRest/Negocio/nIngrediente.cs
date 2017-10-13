@@ -52,7 +52,7 @@ namespace Negocio
 
         public int EfetuarExclusao(int cd_usuario_logado)
         {
-            return (int)AtualizaDados(pr_atualiza, this, cd_usuario_logado, true);
+            return AtualizaDados(pr_atualiza, this, cd_usuario_logado, true);
         }
         
     }

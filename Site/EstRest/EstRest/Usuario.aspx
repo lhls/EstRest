@@ -41,11 +41,11 @@
         </div>
         <div class="form-group">
             <label for="txtLoginInclusao">Login</label>
-            <input type="text" runat="server" class="form-control" id="txtLoginInclusao" placeholder="Nome" />
+            <input type="text" runat="server" class="form-control" id="txtLoginInclusao" placeholder="Login" />
         </div>
         <div class="form-group">
             <label for="txtSenhaInclusao">Senha</label>
-            <input type="password" runat="server" class="form-control" id="txtSenhaInclusao" placeholder="Nome" />
+            <input type="password" runat="server" class="form-control" id="txtSenhaInclusao" />
         </div>
         <div class="form-group">
             <label for="ddlPerfilInclusao">Perfil</label>

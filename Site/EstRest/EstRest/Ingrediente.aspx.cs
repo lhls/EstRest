@@ -53,10 +53,12 @@ namespace EstRest
                 cd_ingrediente = (!string.IsNullOrEmpty(hdnCdIngrediente.Value) ? Convert.ToInt32(hdnCdIngrediente.Value) : int.MinValue),
                 ds_ingrediente = txtDescricaoInclusao.Value,
                 cd_unidade_medida = Convert.ToInt32(ddlUnidadeMedidaInclusao.SelectedValue),
-                dt_validade = Convert.ToDateTime(txtDtValidade.Value),
-                nr_quantidade_atual = Convert.ToDecimal(txtQtdInicial.Value)
             };
-
+            if (objIng.cd_ingrediente == int.MinValue)
+            {
+                objIng.dt_validade = Convert.ToDateTime(txtDtValidade.Value);
+                objIng.nr_quantidade_atual = Convert.ToDecimal(txtQtdInicial.Value);
+            }
             try
             {
                 objIng.EfetuarAtualizacao(c_cd_usuario_logado);
@@ -72,8 +74,8 @@ namespace EstRest
 
         protected override void btnInserir_ServerClick(object sender, EventArgs e)
         {
-            divValidadeInicial.Visible = false;
-            divQuantidadeInicial.Visible = false;
+            divValidadeInicial.Visible = true;
+            divQuantidadeInicial.Visible = true;
 
             base.btnInserir_ServerClick(sender, e);
         }
@@ -113,7 +115,7 @@ namespace EstRest
                 };
                 try
                 {
-                    objU.EfetuarAtualizacao(c_cd_usuario_logado);
+                    objU.EfetuarExclusao(c_cd_usuario_logado);
                     ExibirMensagem("Efetuada exclusão do ingrediente " + objU.ds_ingrediente + " com sucesso.");
 
                     btnConsultar_ServerClick(null, null);

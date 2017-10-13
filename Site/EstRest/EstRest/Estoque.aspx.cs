@@ -17,11 +17,25 @@ namespace EstRest
             titulo_pagina = "Estoque";
             base.Page_Load(sender, e);
         }
+        protected override void carregarCombos()
+        {
+            nIngrediente objI = new nIngrediente();
+            ddlIngredienteInclusao.DataSource = objI.EfetuarConsulta().Tables[0];
+            ddlIngredienteInclusao.DataBind();
 
+            ddlIngredienteInclusao.Items.Insert(0, new ListItem("Selecione", int.MinValue.ToString()));
+        }
+        protected override void limpaCamposInclusao()
+        {
+            txtDtValidadeInclusao.Value = "";
+            txtQtdInicial.Value = "";
+
+            base.limpaCamposInclusao();
+        }
         protected override void limpaCamposPesquisa()
         {
             txtDescricaoPesquisa.Value = string.Empty;
-            txtDtValidadeInicio.Value = string.Empty;
+            txtDtValidadeInicio.Value = DateTime.Now.ToString("dd/MM/yyyy");
             txtDtValidadeFim.Value = string.Empty;
         }
         protected void btnConsultar_ServerClick(object sender, EventArgs e)
@@ -38,53 +52,56 @@ namespace EstRest
         }
         protected void gvDados_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            nEstoque objE = new nEstoque((int)(((GridView)sender).DataKeys[Convert.ToInt32(e.CommandArgument)]["cd_estoque"]),
-                                                 Convert.ToDateTime(((GridView)sender).DataKeys[Convert.ToInt32(e.CommandArgument)]["dt_validade"]));
+            int linhaAtual;
 
-            if (e.CommandName == "EDITAR")
+            if (int.TryParse(e.CommandArgument.ToString(), out linhaAtual))
             {
-                v_place_holder_ativo = e_place_holder_ativo.Editar;
-
-                hNomeIngredienteValidade.InnerText = objE.ds_ingrediente + " - " + objE.dt_validade.ToString("dd/MM/yyyy");
-
-                preencherGridHistorico(objE);
-            }
-            else
-            {
-                if (e.CommandName == "ADICIONAR")
+                nEstoque objE = new nEstoque((int)(((GridView)sender).DataKeys[linhaAtual]["cd_estoque"]),
+                                              Convert.ToDateTime(((GridView)sender).DataKeys[linhaAtual]["dt_validade"]));
+                if (e.CommandName == "EDITAR")
                 {
-                    objE.fg_entrada = true;
-                }
-                else if (e.CommandName == "REMOVER") 
-                {
-                    objE.fg_entrada = false;
-                }
-                int linhaAtual = Convert.ToInt32(e.CommandArgument);
-                HtmlInputText txtQtdAlterar = (HtmlInputText)gvDados.Rows[linhaAtual].FindControl("txtQtdAlterar");
-                decimal qtd_alterar = string.IsNullOrEmpty(txtQtdAlterar.Value) ? 0 : Convert.ToDecimal(txtQtdAlterar.Value);
+                    v_place_holder_ativo = e_place_holder_ativo.Editar;
 
-                objE.nr_quantidade_alterar = qtd_alterar;
-                if (objE.nr_quantidade_alterar > objE.nr_quantidade_atual)
-                {
-                    ExibirMensagem("Não foi possível realizar remoção, pois produto possui apenas " + objE.nr_quantidade_atual.ToString() + " em estoque");
+                    hNomeIngredienteValidade.InnerText = objE.ds_ingrediente + " - " + objE.dt_validade.ToString("dd/MM/yyyy");
+
+                    preencherGridHistorico(objE);
                 }
                 else
                 {
-                    try
-                    {
+                    objE.fg_entrada = (e.CommandName == "ADICIONAR");
 
-                        objE.EfetuarAtualizacao(c_cd_usuario_logado);
-                        ExibirMensagem("Efetuada " + (e.CommandName == "ADICIONAR" ? "inclusão" : "remoção") +
-                                        " de estoque do ingrediente " + objE.ds_ingrediente + " com sucesso.");
-
-                        btnConsultar_ServerClick(null, null);
-                    }
-                    catch (Exception ex)
+                    HtmlInputText txtQtdAlterar = (HtmlInputText)gvDados.Rows[linhaAtual].FindControl("txtQtdAlterar");
+                    decimal qtd_alterar = string.IsNullOrEmpty(txtQtdAlterar.Value) ? 0 : Convert.ToDecimal(txtQtdAlterar.Value);
+                    if (qtd_alterar > 0)
                     {
-                        if (!ExibirMensagemErro(ex.Message))
+                        objE.nr_quantidade_alterar = qtd_alterar;
+                        if (!objE.fg_entrada && objE.nr_quantidade_alterar > objE.nr_quantidade_atual)
                         {
-                            throw ex;
+                            ExibirMensagem("Não foi possível realizar remoção, pois produto possui apenas " + objE.nr_quantidade_atual.ToString() + " em estoque");
                         }
+                        else
+                        {
+                            try
+                            {
+
+                                objE.EfetuarAtualizacao(c_cd_usuario_logado);
+                                ExibirMensagem("Efetuada " + (e.CommandName == "ADICIONAR" ? "inclusão" : "remoção") +
+                                                " de estoque do ingrediente " + objE.ds_ingrediente + " com sucesso.");
+
+                                btnConsultar_ServerClick(null, null);
+                            }
+                            catch (Exception ex)
+                            {
+                                if (!ExibirMensagemErro(ex.Message))
+                                {
+                                    throw ex;
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        ExibirMensagem("Favor informar quantidade para movimentar estoque");
                     }
                 }
             }
@@ -108,8 +125,50 @@ namespace EstRest
                             objEM.ds_usuario_alteracao,
                             objEM.dt_alteracao);
             }
-
+            btnVoltar.Visible = gvHistorico.Visible = true;
+            divInclusao.Visible = false;
             popularGrid(gvHistorico, dt);
+        }
+
+        protected override void btnInserir_ServerClick(object sender, EventArgs e)
+        {
+            btnVoltar.Visible = gvHistorico.Visible = false;
+            divInclusao.Visible = true;
+
+            hNomeIngredienteValidade.InnerText = "Inclusão de estoque com nova validade";
+
+            base.btnInserir_ServerClick(sender, e);
+        }
+
+        protected override void btnSalvar_ServerClick(object sender, EventArgs e)
+        {
+            if (ddlIngredienteInclusao.SelectedValue == int.MinValue.ToString() ||
+                string.IsNullOrWhiteSpace(txtDtValidadeInclusao.Value) ||
+                string.IsNullOrWhiteSpace(txtQtdInicial.Value))
+            {
+                ExibirMensagem("Preencha todos os campos");
+                return;
+            }
+
+            nEstoque objNovoEstoque = new nEstoque
+            {
+                cd_ingrediente = Convert.ToInt32(ddlIngredienteInclusao.SelectedValue),
+                dt_validade = Convert.ToDateTime(txtDtValidadeInclusao.Value),
+                nr_quantidade_atual = Convert.ToDecimal(txtQtdInicial.Value)
+            };
+
+            try
+            {
+                objNovoEstoque.EfetuarAtualizacao(c_cd_usuario_logado, true);
+                base.btnSalvar_ServerClick(sender, e);
+            }
+            catch (Exception ex)
+            {
+                if (!ExibirMensagemErro(ex.Message))
+                {
+                    throw ex;
+                }
+            }
         }
     }
 }

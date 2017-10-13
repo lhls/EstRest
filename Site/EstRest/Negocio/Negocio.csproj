@@ -45,6 +45,7 @@
     <Compile Include="nEstoque.cs" />
     <Compile Include="nEstoqueMovimentacao.cs" />
     <Compile Include="nIngrediente.cs" />
+    <Compile Include="nPrato.cs" />
     <Compile Include="nUnidadeMedida.cs" />
     <Compile Include="nUsuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

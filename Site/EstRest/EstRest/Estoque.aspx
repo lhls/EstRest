@@ -8,9 +8,8 @@
             <input type="text" runat="server" class="form-control" id="txtDescricaoPesquisa" placeholder="Descrição" />
         </div>
         <div class="form-group col-sm-6">
-            <label for="txtDtValidadeInicio">Ingrediente</label>
             <div class="form-group">
-                <label for="txtDtValidade">Data de Validade Inicial</label>
+                <label for="txtDtValidadeInicio">Data de Validade Inicial</label>
                 <div class="input-group date">
                     <input type="text" runat="server" id="txtDtValidadeInicio" class="form-control" readonly="true" />
                     <div class="input-group-addon">
@@ -20,9 +19,8 @@
             </div>
         </div>
         <div class="form-group col-sm-6">
-            <label for="txtDtValidadeInicio">Ingrediente</label>
             <div class="form-group">
-                <label for="txtDtValidade">Data de Validade Inicial</label>
+                <label for="txtDtValidadeFim">Data de Validade Final</label>
                 <div class="input-group date">
                     <input type="text" runat="server" id="txtDtValidadeFim" class="form-control" readonly="true" />
                     <div class="input-group-addon">
@@ -43,7 +41,7 @@
                 <asp:BoundField HeaderText="Validade" SortExpression="dt_validade" DataField="dt_validade" />
                 <asp:TemplateField HeaderText="Quantidade para alterar" >
                     <ItemTemplate>
-                        <input type="text" runat="server" class="form-control" id="txtQtdAlterar" placeholder="0" />
+                        <asp:TextBox type="number" step=".01" runat="server" class="form-control" id="txtQtdAlterar" placeholder="0" />
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:ButtonField CommandName="ADICIONAR" ButtonType="Link" Text="Adicionar" />
@@ -69,7 +67,30 @@
             </Columns>
         </asp:GridView>
         <div class="form-group">
-            <button type="submit" class="btn btn-default" runat="server" id="btnCancelar" name="btnVoltar">Voltar</button>
+            <button type="submit" class="btn btn-default" id="btnVoltar" runat="server" name="btnVoltar">Voltar</button>
+        </div>
+    </div>
+    <div runat="server" id="divInclusao" class="form">
+        <div class="form-group">
+            <label for="txtDescricaoInclusao">Ingrediente</label>
+            <asp:DropDownList runat="server" CssClass="form-control" ID="ddlIngredienteInclusao" DataTextField="ds_ingrediente" DataValueField="cd_ingrediente" />
+        </div>
+        <div class="form-group" id="divValidade" runat="server">
+            <label for="txtDtValidadeInclusao">Data de Validade</label>
+            <div class="input-group date inclusao">
+                <input type="text" runat="server" id="txtDtValidadeInclusao" class="form-control" readonly="true" />
+                <div class="input-group-addon">
+                    <span class="glyphicon glyphicon-th"></span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group" id="divQuantidadeInicial" runat="server">
+            <label for="txtQtdInicial">Quantidade Inicial em Estoque</label>
+            <input type="text" runat="server" class="form-control" id="txtQtdInicial" />
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary" runat="server" id="btnSalvar" name="btnSalvar" onserverclick="btnSalvar_ServerClick">Salvar</button>
+            <button type="submit" class="btn btn-default" runat="server" id="btnCancelar" name="btnCancelar">Cancelar</button>
         </div>
     </div>
 </asp:Content>

@@ -24,9 +24,17 @@
                 return false;
             });
 
-            $('.input-group.date input').datepicker({
+            $('.input-group.date:not(.inclusao) input').datepicker({
                 format: "dd/mm/yyyy",
+                todayBtn: "linked",
+                clearBtn: true,
+                language: "pt-BR",
+                todayHighlight: true
+            });
+
+            $('.input-group.date.inclusao input').datepicker({
                 startDate: "today",
+                format: "dd/mm/yyyy",
                 todayBtn: "linked",
                 clearBtn: true,
                 language: "pt-BR",
@@ -47,7 +55,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">EstRest</a>
+                    <a class="navbar-brand" href="Home.aspx">EstRest</a>
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul id="ulMenu" runat="server" class="nav navbar-nav">
@@ -71,6 +79,8 @@
                 <asp:ContentPlaceHolder ID="cphEdita" runat="server">
                 </asp:ContentPlaceHolder>
             </div>
+            <asp:ContentPlaceHolder ID="cphHome" runat="server">
+            </asp:ContentPlaceHolder>
         </div>
     </form>
 </body>
